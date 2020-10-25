@@ -13,3 +13,4 @@ def ReadSensorTemp():
 
 
 print("Sensor: " + str(ReadSensorTemp()))
+

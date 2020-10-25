@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO    # Import Raspberry Pi GPIO library
 from time import sleep     # Import the sleep function from the time module
 GPIO.setwarnings(False)    # Ignore warning for now
+
 GPIO.setmode(GPIO.BCM)   # Use physical pin numbering
 GPIO.setup(17, GPIO.OUT, initial=GPIO.HIGH) #Red Light
 GPIO.setup(27, GPIO.OUT, initial=GPIO.HIGH) #Green Light
@@ -32,6 +33,7 @@ def Turn_ON_Full():
 def Turn_OFF_Full():
     GPIO.output(22, GPIO.IN)
 
+
 ##TEST
 def __main__():
     while(True):
@@ -49,3 +51,4 @@ def __main__():
 
 if __name__ == '__main__':
     __main__()
+

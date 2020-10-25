@@ -1,8 +1,10 @@
+
 import Lights  # MODULE OF LIGHTS
 from Alertas import Voice  # MODULE OF VOICE
 import Dect_Image  # MODULE OF AI MASK
 import Motors  # MODULE OF MOTORS
 import SensorActivate  # MODULE OF TEMPERATURE
+
 import RPi.GPIO as GPIO
 #############
 import threading
@@ -77,6 +79,7 @@ class myThread(threading.Thread):
                             Voice.speak1('MaxCapacidad.mp3')
 
 
+
 ##Create Thread's######
 threadEntrace = myThread(1, "Entrada")
 threadExit = myThread(2, "Salida")
@@ -105,6 +108,7 @@ def __main__():
 
                 try:
                     # RECONOCIMIENTO FACIAL
+
                     result = Dect_Image.Reconocimiento()
                     token = True
                 except Exception as e:
@@ -112,6 +116,7 @@ def __main__():
                     token = False
 
                 print('[INFO] Evaluacion Concluida...\n [INFO] Enviando Resultandos...')
+
 
                 if (result == 'Mask' and token and TempSafe):
                     Lights.Turn_ON_Green()
@@ -122,10 +127,12 @@ def __main__():
                     Lights.Turn_OFF_Green()
 
                 elif ((result == 'No Mask' or not TempSafe) and token):
+
                     Lights.Turn_ON_Red()
                     Voice.speak1('denegado.mp3')
                     print('[INFO] Acceso Denegado...\n[INFO] Esperando Nuevo Cliente...')
                     Lights.Turn_OFF_Red()
+
 
                 if (not token):
                     print('[INFO] Intentelo de Nuevo...')
@@ -134,11 +141,15 @@ def __main__():
                     except Exception as e:
                         print('[INFO] ¡ERROR DE CONEXIÓN!')
 
+
             elif (Contador == MaxCapacidad):
+
                 ## Pero el contador no puede llegar al max
                 Lights.Turn_ON_Full()
                 Voice.speak1('localFull.mp3')
                 print('[INFO] Local Lleno...\n[INFO] No se permiten Nuevos Clientes...')
+
+
 
 
 if __name__ == '__main__':

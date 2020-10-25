@@ -1,0 +1,8 @@
+Imagenes: 
+
+https://drive.google.com/drive/folders/1XDte2DL2Mf_hw4NsmGst7QtYoU7sMBVG
+
+Guiado por el Jupyter Notebook de:
+
+https://github.com/mk-gurucharan/Face-Mask-Detection/blob/master/FaceMask-Detection.ipynb
+
