@@ -2,36 +2,40 @@ import RPi.GPIO as GPIO    # Import Raspberry Pi GPIO library
 from time import sleep     # Import the sleep function from the time module
 GPIO.setwarnings(False)    # Ignore warning for now
 
+RED = 22
+GREEN = 17
+FULL = 27
+
 GPIO.setmode(GPIO.BCM)   # Use physical pin numbering
-GPIO.setup(17, GPIO.OUT, initial=GPIO.HIGH) #Red Light
-GPIO.setup(27, GPIO.OUT, initial=GPIO.HIGH) #Green Light
-GPIO.setup(22, GPIO.OUT, initial=GPIO.HIGH) #Local FULL Light
+GPIO.setup(RED, GPIO.OUT, initial=GPIO.HIGH) #Red Light
+GPIO.setup(GREEN, GPIO.OUT, initial=GPIO.HIGH) #Green Light
+GPIO.setup(FULL, GPIO.OUT, initial=GPIO.HIGH) #Local FULL Light
 
 def Turn_ON_Red():
     #GPIO.output(17, HIGH) #<--HIGH Only Work with LEDS
-    GPIO.output(17, GPIO.OUT)  #<-- Relay need OUT(turn on) & IN(turn off)
+    GPIO.output(RED, GPIO.OUT)  #<-- Relay need OUT(turn on) & IN(turn off)
     
 
 def Turn_OFF_Red():
-    GPIO.output(17, GPIO.IN)
+    GPIO.output(RED, GPIO.IN)
     
 
 
 def Turn_ON_Green():
     #if GPIO.input(27): #<- Read state of GPIO
         #GPIO.output(27, LOW)
-    GPIO.output(27, GPIO.OUT)
+    GPIO.output(GREEN, GPIO.OUT)
 
     
 def Turn_OFF_Green():
-    GPIO.output(27, GPIO.IN)
+    GPIO.output(GREEN, GPIO.IN)
 
 
 def Turn_ON_Full():
-    GPIO.output(22, GPIO.OUT) #<- Relay
+    GPIO.output(FULL, GPIO.OUT) #<- Relay
     
 def Turn_OFF_Full():
-    GPIO.output(22, GPIO.IN)
+    GPIO.output(FULL, GPIO.IN)
 
 
 ##TEST

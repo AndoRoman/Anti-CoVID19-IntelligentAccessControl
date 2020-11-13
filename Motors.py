@@ -1,10 +1,10 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
-DIR_IN = 20  # Direction GPIO Pin
-STEP_IN = 21  # Step GPIO Pin
-DIR_OUT = 19
-STEP_OUT = 26
+DIR_IN = 21  # Direction GPIO Pin
+STEP_IN = 20  # Step GPIO Pin
+DIR_OUT = 13
+STEP_OUT = 19
 
 CW = 1  # Clockwise Rotation
 CCW = 0  # Counterclockwise Rotation
@@ -15,16 +15,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(DIR_IN, GPIO.OUT)
 GPIO.setup(STEP_IN, GPIO.OUT)
 GPIO.output(DIR_IN, CW)
-
-MODE = (14, 15, 18)  # Microstep Resolution GPIO Pins
-GPIO.setup(MODE, GPIO.OUT)
-RESOLUTION = {'Full': (0, 0, 0),
-              'Half': (1, 0, 0),
-              '1/4': (0, 1, 0),
-              '1/8': (1, 1, 0),
-              '1/16': (0, 0, 1),
-              '1/32': (1, 0, 1)}
-GPIO.output(MODE, RESOLUTION['Full'])
 
 step_count = SPR * 2
 delay = .0208 / 2

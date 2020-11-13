@@ -1,0 +1,3 @@
+ModuloID=1
+ModuloEstatus=1
+Modulo_IDSucursal=1

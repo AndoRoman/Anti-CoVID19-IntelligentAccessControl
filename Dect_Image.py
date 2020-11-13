@@ -31,7 +31,7 @@ model = load_model("mask_detector.model")
 # load the input image from disk, clone it, and grab the image spatial
 # dimensions
 def Reconocimiento():
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(2)
     text, image = cap.read()
     cap.release()
     label = ''
