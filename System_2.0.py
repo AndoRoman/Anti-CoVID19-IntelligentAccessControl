@@ -1,4 +1,3 @@
-
 import Lights  # MODULE OF LIGHTS
 from Alertas import Voice  # MODULE OF VOICE
 import Dect_Image  # MODULE OF AI MASK
@@ -20,13 +19,14 @@ SensorIR = 4
 SensorSalida2 = 10
 SensorSalida1 = 9
 SensorEntrada = 11
+BotonPanico = 12
 # SensorTemperatura = 2 y 3
 # MotorEntrada = 21(DIR), 20(STEP)
 # MotorSalida = 13(DIR), 19(STEP)
 # LuzVerde = 27
 # LuzRoja = 17
 # luzAmarilla = 22
-
+# BOTON PANICO = 12
 
 GPIO.setwarnings(False)  # Ignore warning for now
 GPIO.setmode(GPIO.BCM)  # Use physical pin numbering
@@ -34,6 +34,8 @@ GPIO.setup(SensorIR, GPIO.IN)  # sensor IR
 GPIO.setup(SensorSalida1, GPIO.IN)
 GPIO.setup(SensorSalida2, GPIO.IN)
 GPIO.setup(SensorEntrada, GPIO.IN)
+GPIO.setup(BotonPanico, GPIO.IN)
+
 
 ####CLASS TO THREAD###
 class myThread(threading.Thread):
@@ -47,29 +49,35 @@ class myThread(threading.Thread):
         global Contador
         while (1):
             i = 0
-            if(self.name == 'Salida'):
-               if (GPIO.input(SensorSalida1) and i==0 and Contador > 0):
+            if (self.name == 'Salida'):
+                if (GPIO.input(SensorSalida1) and i == 0 and Contador > 0):
                     Motors.Open_Barrier_OUT()
-                    t1 = time.time()  
+                    t1 = time.time()
                     a = 1
-                    i+= 1
+                    i += 1
                     print("SALIDA #0 ACTIVADA\n")
                     time.sleep(3)
-                    while(a!=0):
+                    while (a != 0):
                         t2 = time.time()
                         if (GPIO.input(SensorSalida2)):
                             print("SALIDA #1 ACTIVADA\n")
-                            Contador -= 1   
+                            Contador -= 1
                             time.sleep(3)
-                            a=0
+                            a = 0
                             Motors.Close_Barrier_OUT()
-                            
-                        if(t2-t1>5):
+
+                        if t2 - t1 > 5:
                             print("CERRANDO..., time agotado\n")
-                            a=0
+                            a = 0
                             Motors.Close_Barrier_OUT()
 
-
+            if GPIO.input(BotonPanico):
+                Motors.Open_Barrier_OUT()
+                Motors.Open_Barrier_IN()
+                while GPIO.input(BotonPanico):
+                    Lights.Turn_ON_Full()
+                    sleep(1)
+                    Lights.Turn_OFF_Full()
 
 
 
@@ -81,17 +89,16 @@ def Entrada():
         if (Contador == MaxCapacidad):
             Lights.Turn_ON_Full()
             Voice.speak1('MaxCapacidad.mp3')
-            
+
         return True
 
     return False
-     
 
 
 ##Create Thread's######
-#threadEntrace = myThread(1, "Entrada")
+# threadEntrace = myThread(1, "Entrada")
 threadExit = myThread(1, "Salida")
-#threadEntrace.start()  # Inicialization Thread
+# threadEntrace.start()  # Inicialization Thread
 threadExit.start()
 
 
@@ -100,7 +107,6 @@ def __main__():
     print('[INFO] Sistema Activado...\n[INFO] Esperando Cliente...')
     Voice.speak1('bienvenido.mp3')
     while (True):
-
 
         if (not GPIO.input(SensorIR)):
             acces = True
@@ -111,7 +117,7 @@ def __main__():
                 # SENSOR DE TEMPERATURA
                 tempe = TempC.ReadSensorTemp()
                 print("[INFO] TEMPERATURA: " + str(tempe))
-                if ( tempe < 38.0):
+                if (tempe < 38.0):
                     TempSafe = True
                 else:
                     TempSafe = False
@@ -127,7 +133,6 @@ def __main__():
 
                 print('[INFO] Evaluacion Concluida...\n [INFO] Enviando Resultandos...')
 
-
                 if (result == 'Mask' and token and TempSafe):
                     Lights.Turn_ON_Green()
                     Voice.speak1('aceptado.mp3')
@@ -135,14 +140,14 @@ def __main__():
                     # OPEN DOOR
                     T = True
                     t1 = time.time()
-                    while(T):
+                    while (T):
                         t2 = time.time()
-                        if(Entrada()):
+                        if (Entrada()):
                             T = False
-                            
-                        if((t2 - t1)>5):
+
+                        if ((t2 - t1) > 5):
                             T = False
-                            
+
                     Lights.Turn_OFF_Green()
                     Motors.Close_Barrier_IN()
                     print('[INFO] Acceso Permitido...\n[INFO] Esperando Nuevo Cliente...')
@@ -153,7 +158,6 @@ def __main__():
                     Voice.speak1('denegado.mp3')
                     print('[INFO] Acceso Denegado...\n[INFO] Esperando Nuevo Cliente...')
                     Lights.Turn_OFF_Red()
-
 
                 if (not token):
                     print('[INFO] Intentelo de Nuevo...')
@@ -169,8 +173,6 @@ def __main__():
                 Lights.Turn_ON_Full()
                 Voice.speak1('localFull.mp3')
                 print('[INFO] Local Lleno...\n[INFO] No se permiten Nuevos Clientes...')
-
-
 
 
 if __name__ == '__main__':
