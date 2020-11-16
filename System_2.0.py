@@ -71,13 +71,7 @@ class myThread(threading.Thread):
                             a = 0
                             Motors.Close_Barrier_OUT()
 
-            if GPIO.input(BotonPanico):
-                Motors.Open_Barrier_OUT()
-                Motors.Open_Barrier_IN()
-                while GPIO.input(BotonPanico):
-                    Lights.Turn_ON_Full()
-                    sleep(1)
-                    Lights.Turn_OFF_Full()
+            
 
 
 
@@ -107,6 +101,17 @@ def __main__():
     print('[INFO] Sistema Activado...\n[INFO] Esperando Cliente...')
     Voice.speak1('bienvenido.mp3')
     while (True):
+        
+        #BOTON PANICO
+#        if not GPIO.input(BotonPanico):
+#                Motors.Open_Barrier_OUT()
+#                Motors.Open_Barrier_IN()
+#                
+#                while GPIO.input(BotonPanico):
+#                    Lights.Turn_ON_Full()
+#                    time.sleep(1)
+#                    Lights.Turn_OFF_Full()
+                    
 
         if (not GPIO.input(SensorIR)):
             acces = True

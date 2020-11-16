@@ -14,6 +14,8 @@ SPR = 24  # Steps per Revolution (360 / 15)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(DIR_IN, GPIO.OUT)
 GPIO.setup(STEP_IN, GPIO.OUT)
+GPIO.setup(STEP_OUT, GPIO.OUT)
+GPIO.setup(DIR_OUT, GPIO.OUT)
 GPIO.output(DIR_IN, CW)
 
 step_count = SPR * 2
