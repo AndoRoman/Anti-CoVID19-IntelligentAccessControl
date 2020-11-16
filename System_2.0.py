@@ -10,15 +10,16 @@ import threading
 import time
 
 #####VARIABLES###########
+global Contador
 Contador = 0
 MaxCapacidad = 2  # Max people into building
 PersonisExiting = False  # Indicate if a person stay on the door
 
 ###GPIO###
 SensorIR = 4
-SensorSalida2 = 10
-SensorSalida1 = 9
-SensorEntrada = 11
+SensorSalida2 = 9
+SensorSalida1 = 11
+SensorEntrada = 10
 BotonPanico = 12
 # SensorTemperatura = 2 y 3
 # MotorEntrada = 21(DIR), 20(STEP)
@@ -46,7 +47,7 @@ class myThread(threading.Thread):
 
     def run(self):
         ##Function that THREAD will do
-        global Contador
+        
         while (1):
             i = 0
             if (self.name == 'Salida'):
@@ -122,7 +123,7 @@ def __main__():
                 # SENSOR DE TEMPERATURA
                 tempe = TempC.ReadSensorTemp()
                 print("[INFO] TEMPERATURA: " + str(tempe))
-                if (tempe < 38.0):
+                if (tempe < 40.0):
                     TempSafe = True
                 else:
                     TempSafe = False
@@ -147,11 +148,20 @@ def __main__():
                     t1 = time.time()
                     while (T):
                         t2 = time.time()
-                        if (Entrada()):
+                        if (GPIO.input(SensorEntrada)):
+                            Contador += 1
+                            print("ENTRADA...Cantidad de personas: " + str(Contador))
+                            time.sleep(3)
                             T = False
+                            if (Contador == MaxCapacidad):
+                                Lights.Turn_ON_Full()
+                                Voice.speak1('MaxCapacidad.mp3')
+
+                                               
 
                         if ((t2 - t1) > 5):
                             T = False
+                            print("[INFO] Tiempo Agotado...Cerrando Entrada")
 
                     Lights.Turn_OFF_Green()
                     Motors.Close_Barrier_IN()

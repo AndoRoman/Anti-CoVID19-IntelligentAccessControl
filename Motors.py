@@ -16,6 +16,7 @@ GPIO.setup(DIR_IN, GPIO.OUT)
 GPIO.setup(STEP_IN, GPIO.OUT)
 GPIO.setup(STEP_OUT, GPIO.OUT)
 GPIO.setup(DIR_OUT, GPIO.OUT)
+
 GPIO.output(DIR_IN, CW)
 
 step_count = SPR * 2
@@ -26,6 +27,7 @@ delay = .0208 / 2
 
 ###OPEN BARRIER
 def Open_Barrier_IN():
+    GPIO.output(DIR_IN, CCW)
     for x in range(step_count):
         GPIO.output(STEP_IN, GPIO.HIGH)
         sleep(delay)
@@ -35,7 +37,7 @@ def Open_Barrier_IN():
 
 ###CLOSE BARRIER
 def Close_Barrier_IN():
-    GPIO.output(DIR_IN, CCW)
+    GPIO.output(DIR_IN, CW)
     for x in range(step_count):
         GPIO.output(STEP_IN, GPIO.HIGH)
         sleep(delay)
@@ -44,6 +46,7 @@ def Close_Barrier_IN():
 
 
 def Open_Barrier_OUT():
+    GPIO.output(DIR_OUT, 0)
     for i in range(step_count):
         GPIO.output(STEP_OUT, GPIO.HIGH)
         sleep(delay)
@@ -52,7 +55,7 @@ def Open_Barrier_OUT():
 
 
 def Close_Barrier_OUT():
-    GPIO.output(DIR_OUT, CCW)
+    GPIO.output(DIR_OUT, 1)
     for i in range(step_count):
         GPIO.output(STEP_OUT, GPIO.HIGH)
         sleep(delay)
@@ -62,12 +65,15 @@ def Close_Barrier_OUT():
 
 ##TEST
 def __main__():
-    print('Abriendo Barrera!')
-    Open_Barrier_OUT()
-    sleep(1)
-    print('Cerraron Barrera!')
-    Close_Barrier_OUT()
-    GPIO.cleanup()
+    while(True):
+        
+        print('Abriendo Barrera!')
+        Open_Barrier_OUT()
+        sleep(1)
+        print('Cerraron Barrera!')
+        Close_Barrier_OUT()
+        sleep(1)
+
 
 
 if __name__ == '__main__':
