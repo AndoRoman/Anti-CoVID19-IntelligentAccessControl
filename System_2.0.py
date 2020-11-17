@@ -3,9 +3,10 @@ from Alertas import Voice  # MODULE OF VOICE
 import Dect_Image  # MODULE OF AI MASK
 import Motors  # MODULE OF MOTORS
 import TempC  # MODULE OF TEMPERATURE
+import SOAPClient # Cliente SOAP
 import Contador
 import QRreader
-import SOAPClient
+
 import RPi.GPIO as GPIO
 #############
 import threading
