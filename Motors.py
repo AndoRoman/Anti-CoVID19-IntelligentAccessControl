@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 
 DIR_IN = 21  # Direction GPIO Pin
 STEP_IN = 20  # Step GPIO Pin
-DIR_OUT = 13
+DIR_OUT = 26
 STEP_OUT = 19
 
 CW = 1  # Clockwise Rotation
@@ -46,7 +46,7 @@ def Close_Barrier_IN():
 
 
 def Open_Barrier_OUT():
-    GPIO.output(DIR_OUT, 0)
+    GPIO.output(DIR_OUT, 1)
     for i in range(step_count):
         GPIO.output(STEP_OUT, GPIO.HIGH)
         sleep(delay)
@@ -55,7 +55,7 @@ def Open_Barrier_OUT():
 
 
 def Close_Barrier_OUT():
-    GPIO.output(DIR_OUT, 1)
+    GPIO.output(DIR_OUT, 0)
     for i in range(step_count):
         GPIO.output(STEP_OUT, GPIO.HIGH)
         sleep(delay)
