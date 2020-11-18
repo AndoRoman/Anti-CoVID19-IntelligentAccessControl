@@ -1,40 +1,69 @@
-# import zeep
+import zeep
 import linecache
 import datetime
 
 # CLIENT SOAP
-# settings = zeep.Settings(strict=False, xml_huge_tree=True)
-# wsdl = 'URL_SERVER_SOAP_DOC_soap'
+from zeep import *
 
-# cliente = Client(wsdl)
+settings = Settings(strict=False, xml_huge_tree=True)
+wsdl = 'http://localhost:7000/ws?wsdl'
+
+cliente = Client(wsdl)
 # Factory more information on Doc : https://docs.python-zeep.org/en/master/datastructures.html
-# factory = cliente.type_factory('http://soap.clienteHTML5/')
+factory = cliente.type_factory('http://Soap.ACIACS/')
 
 # information Pre-configurate
 ModuloID = linecache.getline("configuration.txt", 1).strip().split("=")[1]
+# ModuloEstatus indica si es normal (0) o Prioritario (1)
 ModuloEstatus = linecache.getline("configuration.txt", 2).strip().split("=")[1]
 IDSucursal = linecache.getline("configuration.txt", 3).strip().split("=")[1]
+print("[INFO] SOAPClient Inicializado...")
 
 
 # Initialization
 def InitializationSystem():
-    response = cliente.service.inicializar(ModuloID, ModuloEstatus, IDSucursal)
+    # response = MaxCapacidad de la sucursal
+    response = cliente.service.capacidadSucursal(IDSucursal)
+
     with open("Syslog.txt", "a") as file:
         file.writelines("\n[Initialization : " + str(datetime.datetime.now()) +
-                        "]\n{" + str(response) + "\n}END\n")
+                        "]\n{MaxCapacidad de la Sucursal = " + str(response) + "\n}END\n")
         file.close()
 
+    with open("SucursalInfo.txt", "w+") as data:
+        data.writelines("MaxCapacidad=" + str(response) + "\nContador=0")
+        data.close()
 
-def UpdateStatus():
-    cliente.service.Status(ModuloID, Contador, GoodTest, BadTest)
+
+def NewTest(Temp, Mask, QR):
+
+    if ModuloEstatus:
+        Type = True
+    else:
+        Type = False
+
+    test = factory.dtoTesting(mascarilla=Mask, temperatura=Temp, fechaResgistro=datetime.datetime.now(),
+                              idModulo=ModuloID, tipoModulo=Type, cedulaPersona=QR)
+
+    return test
+
+
+# Enviar Nuevo Test
+def UpdateStatus(Temp, Mask, QR):
+    count = cliente.service.agregarTest(NewTest(Temp=Temp, Mask=Mask, QR=QR))  # Retorna nuevo valor de conteo
+
     with open("Syslog.txt", "a") as file:
         file.writelines("\n[ PUSH TO CLOUD : " + str(datetime.datetime.now()) + "]\n{"
                         + "ModuloID = " + str(ModuloID)
-                        + "\nPersonas dentro del Local = " + str(Contador)
-                        + "\nPersonas con Acceso PERMITIDO = " + str(GoodTest)
-                        + "\nPersonas con Acceso DENEGADO = " + str(BadTest)
+                        + "\nTEST = " + str(Temp) + ", " + str(Mask) + ", " + str(QR)
+                        + "\nPersonas dentro del Local = " + str(count[1])
                         + "\n}END\n")
         file.close()
+    return count
+
+
+def ExitPerson():
+    return cliente.service.salidadDePersona(IDSucursal)
 
 
 # Authenticar QR
@@ -42,12 +71,14 @@ def Authentication(QR):
     with open("Syslog.txt", "a") as file:
         file.writelines("\n[ Authenticate QR : " + str(datetime.datetime.now()) + "]\n{}END\n")
         file.close()
-    return cliente.service.autenticarQR(QR)  # True or False
+    return cliente.service.consultarPrioridad(QR, "1")  # True or False
 
 
 def __main__():
-    print("Archivo de Configuración:\n ModuloID = " + str(ModuloID) + "\n ModuloEstatus = " + str(ModuloEstatus) +
-          "\n IDSucursal = " + str(IDSucursal))
+    InitializationSystem()
+    print("Conectado")
+    print('Agregando persona: ' + str(UpdateStatus(37.5, True, None)))
+    print('autenticar: ' + str(Authentication("1323143243")))
 
 
 if __name__ == '__main__':

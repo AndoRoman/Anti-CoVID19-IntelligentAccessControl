@@ -1,0 +1,2 @@
+MaxCapacidad=100
+Contador=0

@@ -65,7 +65,7 @@ def Close_Barrier_OUT():
 
 ##TEST
 def __main__():
-    while(True):
+    while True:
         
         print('Abriendo Barrera!')
         Open_Barrier_OUT()
