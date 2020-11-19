@@ -1,4 +1,4 @@
-import Voice
+#import Voice
 import linecache
 import datetime
 
@@ -78,7 +78,7 @@ try:
 
 except Exception:
     print("NO HA SIDO POSIBLE CONECTARSE CON EL SERVIDOR SOAP")
-    Voice.speak1("ErrorConexion.mp3")
+    #Voice.speak1("ErrorConexion.mp3")
 
 def __main__():
     InitializationSystem()
