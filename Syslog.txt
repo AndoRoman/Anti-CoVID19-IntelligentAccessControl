@@ -81,3 +81,50 @@ Personas dentro del Local = 21
 
 [ Authenticate QR : 2020-11-17 03:05:08.595843]
 {}END
+
+[Initialization : 2020-11-17 13:59:29.023273]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-17 14:01:43.195469]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-17 14:02:18.073959]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ PUSH TO CLOUD : 2020-11-17 14:02:18.706469]
+{ModuloID = 1
+TEST = 37.5, True, None
+Personas dentro del Local = 21
+}END
+
+[ Authenticate QR : 2020-11-17 14:02:18.706469]
+{}END
+
+[Initialization : 2020-11-17 14:10:17.875676]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ PUSH TO CLOUD : 2020-11-17 14:10:17.913397]
+{ModuloID = 1
+TEST = 37.5, True, None
+Personas dentro del Local = 21
+}END
+
+[ Authenticate QR : 2020-11-17 14:10:17.913397]
+{}END
+
+[Initialization : 2020-11-17 14:10:32.628773]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ PUSH TO CLOUD : 2020-11-17 14:10:32.644392]
+{ModuloID = 1
+TEST = 37.5, True, None
+Personas dentro del Local = 21
+}END
+
+[ Authenticate QR : 2020-11-17 14:10:32.644392]
+{}END
