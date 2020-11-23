@@ -125,10 +125,9 @@ def __main__():
 
         if not GPIO.input(SensorIR):
 
-            acces = True
             print('[INFO] Cliente Recibido...\n [INFO] Evaluando Cliente...')
 
-            if Contador.StatusLocalCapacity() and acces:
+            if Contador.StatusLocalCapacity():
 
                 # SENSOR DE TEMPERATURA
 
@@ -165,7 +164,7 @@ def __main__():
                         while T:
                             t2 = time.time()
                             if GPIO.input(SensorEntrada):
-                                Contador.Person(Temp=tempe, Mask=True, Entry=True)
+                                Contador.PersonalOFFLINE()
                                 print("ENTRADA...Cantidad de personas: " + str(Contador))
                                 time.sleep(3)
                                 T = False
@@ -187,7 +186,7 @@ def __main__():
                         Lights.Turn_ON_Red()
                         Voice.speak1('denegado.mp3')
                         print('[INFO] Acceso Denegado...\n[INFO] Esperando Nuevo Cliente...')
-                        Contador.Person(Temp=tempe, Mask=False, Entry=False)
+                        #Contador.Person(Temp=tempe, Mask=False, Entry=False)
                         Contador.PriorityOFF()
                         Lights.Turn_OFF_Red()
 

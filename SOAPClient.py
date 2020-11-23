@@ -54,13 +54,13 @@ def UpdateStatus(Temp, Mask, QR, Entry):
     count = cliente.service.agregarTest(
         NewTest(Temp=Temp, Mask=Mask, QR=QR, Entry=Entry))  # Retorna nuevo valor de conteo
 
-    with open("Syslog.txt", "a") as file:
-        file.writelines("\n[ PUSH TO CLOUD : " + str(datetime.datetime.now()) + "]\n{"
-                        + "ModuloID = " + str(ModuloID)
-                        + "\nTEST = " + str(Temp) + ", " + str(Mask) + ", " + str(QR)
-                        + "\nPersonas dentro del Local = " + str(count[1])
-                        + "\n}END\n")
-        file.close()
+    # with open("Syslog.txt", "a") as file:
+    #     file.writelines("\n[ PUSH TO CLOUD : " + str(datetime.datetime.now()) + "]\n{"
+    #                     + "ModuloID = " + str(ModuloID)
+    #                     + "\nTEST = " + str(Temp) + ", " + str(Mask) + ", " + str(QR)
+    #                     + "\nPersonas dentro del Local = " + str(count[1])
+    #                     + "\n}END\n")
+    #     file.close()
     return count
 
 
