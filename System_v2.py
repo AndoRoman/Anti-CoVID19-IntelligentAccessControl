@@ -89,11 +89,11 @@ def BotonPanico():
 
         while not GPIO.input(12):
             Lights.Turn_ON_Full()
-            time.sleep(1)
+            time.sleep(2)
             Lights.Turn_OFF_Full()
 
-    Motors.Close_Barrier_IN()
-    Motors.Open_Barrier_OUT()
+        Motors.Close_Barrier_IN()
+        Motors.Close_Barrier_OUT()
 
 
 # Create Thread's
@@ -122,7 +122,7 @@ def __main__():
             acces = True
             print('[INFO] Cliente Recibido...\n [INFO] Evaluando Cliente...')
 
-            if Contador.StatusLocalCapacity() and acces:
+            if not Contador.StatusLocalCapacity() and acces:
 
                 # SENSOR DE TEMPERATURA
 

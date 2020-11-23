@@ -15,6 +15,7 @@ def PriorityON(qrImage):
     global Priority, QR
     Priority = True
     QR = qrImage
+    print("PRIORIDAD ACTIVADA, QR = " + QR)
 
 
 def PriorityOFF():
@@ -35,7 +36,7 @@ def DeletePerson():
     global Conteo
     Conteo -= 1
     SOAPClient.ExitPerson()
-
+    print("ALGUIEN SALIÓ CONTEO = " + str(Conteo))
 
 def ShowPerson():
     global Conteo
@@ -46,12 +47,14 @@ def CanExitPerson():
     global Conteo
     if Conteo > 0:
         return True
+        print("CANExitPerson = TRUE")
     else:
         return False
 
 
 def StatusLocalCapacity():
     global Conteo, MaxCapacidad
+    print("Conteo = " + str(Conteo) + " MaxCapacidad = " + str(MaxCapacidad))
     if Conteo < MaxCapacidad:
         return True
     elif Conteo == MaxCapacidad:
