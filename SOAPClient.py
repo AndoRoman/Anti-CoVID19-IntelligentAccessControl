@@ -28,7 +28,7 @@ def InitializationSystem():
 
     with open("Syslog.txt", "a") as file:
         file.writelines("\n[Initialization : " + str(datetime.datetime.now()) +
-                        "]\n{MaxCapacidad de la Sucursal = " + str(response) + "\n}END\n")
+                        "]\n{MaxCapacidad de la Sucursal = " + str(3) + "\n}END\n")
         file.close()
 
     with open("SucursalInfo.txt", "w+") as data:
