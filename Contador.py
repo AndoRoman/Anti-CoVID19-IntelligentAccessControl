@@ -24,12 +24,12 @@ def PriorityOFF():
     QR = None
 
 
-def Person(Temp, Mask):
+def Person(Temp, Mask, Entry):
     global Conteo, Priority
     if Priority:
-        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=QR)[1]
+        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=QR, Entry=Entry)[1]
     else:
-        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=None)[1]
+        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=None, Entry=Entry)[1]
 
 
 def DeletePerson():
@@ -45,7 +45,7 @@ def ShowPerson():
 
 def CanExitPerson():
     global Conteo
-    if Conteo > 0:
+    if int(Conteo) > 0:
         return True
         print("CANExitPerson = TRUE")
     else:
@@ -55,7 +55,7 @@ def CanExitPerson():
 def StatusLocalCapacity():
     global Conteo, MaxCapacidad
     print("Conteo = " + str(Conteo) + " MaxCapacidad = " + str(MaxCapacidad))
-    if Conteo < MaxCapacidad:
+    if int(Conteo) < int(MaxCapacidad):
         return True
-    elif Conteo == MaxCapacidad:
+    elif int(Conteo) == int(MaxCapacidad) or int(Conteo) < 0:
         return False

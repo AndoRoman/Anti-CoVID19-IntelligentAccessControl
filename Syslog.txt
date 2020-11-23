@@ -180,3 +180,118 @@ Personas dentro del Local = -1
 
 [ Authenticate QR : 2020-11-19 15:57:39.461509]
 {}END
+
+[ PUSH TO CLOUD : 2020-11-23 12:46:40.717813]
+{ModuloID = 
+TEST = 39.97, False, None
+Personas dentro del Local = -1
+}END
+
+[Initialization : 2020-11-23 12:50:53.073637]
+{MaxCapacidad de la Sucursal = 3
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 12:50:53.179058]
+{ModuloID = 
+TEST = 37.5, True, None
+Personas dentro del Local = -1
+}END
+
+[ Authenticate QR : 2020-11-23 12:50:53.180670]
+{}END
+
+[ PUSH TO CLOUD : 2020-11-23 13:58:06.190066]
+{ModuloID = 
+TEST = 39.96, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 13:58:14.820718]
+{ModuloID = 
+TEST = 39.85, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 13:58:22.648380]
+{ModuloID = 
+TEST = 40.0, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 14:04:43.181360]
+{ModuloID = 
+TEST = 37.5, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 15:54:21.731410]
+{ModuloID = 
+TEST = 37.39, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 15:59:05.300449]
+{ModuloID = 
+TEST = 39.43, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 16:07:44.205123]
+{ModuloID = 
+TEST = 37.4, True, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 16:08:31.724325]
+{ModuloID = 
+TEST = 37.22, True, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 16:09:16.653393]
+{ModuloID = 
+TEST = 37.26, True, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 16:10:43.155199]
+{ModuloID = 
+TEST = 37.73, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 16:12:10.145518]
+{ModuloID = 
+TEST = 37.44, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 16:12:30.528913]
+{ModuloID = 
+TEST = 37.29, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 16:12:46.808531]
+{ModuloID = 
+TEST = 37.15, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 16:13:01.079717]
+{ModuloID = 
+TEST = 37.32, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 16:13:17.525887]
+{ModuloID = 
+TEST = 37.21, False, None
+Personas dentro del Local = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-23 16:45:29.250752]
+{ModuloID = 
+TEST = 37.08, False, None
+Personas dentro del Local = -1
+}END

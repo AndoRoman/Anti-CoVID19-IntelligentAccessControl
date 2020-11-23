@@ -32,7 +32,7 @@ def InitializationSystem():
         file.close()
 
     with open("SucursalInfo.txt", "w+") as data:
-        data.writelines("MaxCapacidad=" + str(response) + "\nContador=0")
+        data.writelines("MaxCapacidad=4" + "\nContador=0")
         data.close()
 
 

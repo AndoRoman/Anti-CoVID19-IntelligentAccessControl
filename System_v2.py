@@ -53,7 +53,6 @@ class myThread(threading.Thread):
                 try:
                     QR = QRreader.ReadQR()
                 except Exception:
-                    print("QR NONE")
                     QR = None
 
                 if QR is not None:
@@ -91,6 +90,8 @@ def BotonPanico():
     if not GPIO.input(12):
         Motors.Open_Barrier_OUT()
         Motors.Open_Barrier_IN()
+        Voice.speak1("BotonPanico.mp3")
+
 
         while not GPIO.input(12):
             Lights.Turn_ON_Full()
@@ -127,7 +128,7 @@ def __main__():
             acces = True
             print('[INFO] Cliente Recibido...\n [INFO] Evaluando Cliente...')
 
-            if not Contador.StatusLocalCapacity() and acces:
+            if Contador.StatusLocalCapacity() and acces:
 
                 # SENSOR DE TEMPERATURA
 
@@ -164,7 +165,7 @@ def __main__():
                         while T:
                             t2 = time.time()
                             if GPIO.input(SensorEntrada):
-                                Contador.Person(Temp=tempe, Mask=True)
+                                Contador.Person(Temp=tempe, Mask=True, Entry=True)
                                 print("ENTRADA...Cantidad de personas: " + str(Contador))
                                 time.sleep(3)
                                 T = False
@@ -186,7 +187,7 @@ def __main__():
                         Lights.Turn_ON_Red()
                         Voice.speak1('denegado.mp3')
                         print('[INFO] Acceso Denegado...\n[INFO] Esperando Nuevo Cliente...')
-                        Contador.Person(Temp=tempe, Mask=False)
+                        Contador.Person(Temp=tempe, Mask=False, Entry=False)
                         Contador.PriorityOFF()
                         Lights.Turn_OFF_Red()
 
