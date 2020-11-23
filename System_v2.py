@@ -83,11 +83,11 @@ class myThread(threading.Thread):
 
 
 def BotonPanico():
-    if GPIO.input(BotonPanico):
+    if not GPIO.input(12):
         Motors.Open_Barrier_OUT()
         Motors.Open_Barrier_IN()
 
-        while GPIO.input(BotonPanico):
+        while not GPIO.input(12):
             Lights.Turn_ON_Full()
             time.sleep(1)
             Lights.Turn_OFF_Full()

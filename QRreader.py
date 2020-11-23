@@ -1,4 +1,5 @@
 import cv2
+import time
 
 # initalize the cam
 cap = cv2.VideoCapture(0)
@@ -22,7 +23,10 @@ def ReadQR():
 
 def __main__():
     print("System ON")
-    print("[INFO] QR Code Información:", ReadQR())
+    while(True):
+        print("[INFO] QR Code Información:", ReadQR())
+        time.sleep(2)
+        
     print("System Completed!!")
 
 

@@ -141,3 +141,16 @@ Personas dentro del Local = 21
 
 [ Authenticate QR : 2020-11-19 13:54:13.389468]
 {}END
+
+[Initialization : 2020-11-19 15:57:39.313763]
+{MaxCapacidad de la Sucursal = -1
+}END
+
+[ PUSH TO CLOUD : 2020-11-19 15:57:39.460383]
+{ModuloID = 
+TEST = 37.5, True, None
+Personas dentro del Local = -1
+}END
+
+[ Authenticate QR : 2020-11-19 15:57:39.461509]
+{}END
