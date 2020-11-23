@@ -50,7 +50,12 @@ class myThread(threading.Thread):
 
             # QR
             if self.name == 'QR':
-                QR = QRreader.ReadQR()
+                try:
+                    QR = QRreader.ReadQR()
+                except Exception:
+                    print("QR NONE")
+                    QR = None
+
                 if QR is not None:
                     if SOAPClient.Autentication(QR):
                         Voice.speak1("CodigoQRAceptado.mp3")
