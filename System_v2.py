@@ -3,7 +3,7 @@ from Alertas import Voice  # MODULE OF VOICE
 import Dect_Image  # MODULE OF AI MASK
 import Motors  # MODULE OF MOTORS
 import TempC  # MODULE OF TEMPERATURE
-#import SOAPClient # Cliente SOAP
+import SOAPClient # Cliente SOAP
 import Contador
 import QRreader
 
@@ -56,7 +56,7 @@ class myThread(threading.Thread):
                     QR = None
 
                 if QR is not None:
-                    if QR == '40230640613':
+                    if SOAPClient.Authentication(QR):
                         Voice.speak1("CodigoQRAceptado.mp3")
                         Contador.PriorityON(QR)
                         time.sleep(3)
@@ -138,7 +138,7 @@ def __main__():
                     Voice.speak1("ErrorTemperatura.mp3")
                 else:
 
-                    if tempe < 38.0:
+                    if tempe < 39.0:
                         TempSafe = True
                     else:
                         TempSafe = False
@@ -165,7 +165,7 @@ def __main__():
                         while T:
                             t2 = time.time()
                             if GPIO.input(SensorEntrada):
-                                Contador.PersonalOFFLINE()
+                                Contador.Person(Temp=tempe, Mask=True, Entry=True)
                                 print("ENTRADA...Cantidad de personas: " + str(Contador))
                                 time.sleep(3)
                                 T = False
@@ -187,7 +187,7 @@ def __main__():
                         Lights.Turn_ON_Red()
                         Voice.speak1('denegado.mp3')
                         print('[INFO] Acceso Denegado...\n[INFO] Esperando Nuevo Cliente...')
-                        #Contador.Person(Temp=tempe, Mask=False, Entry=False)
+                        Contador.Person(Temp=tempe, Mask=False, Entry=False)
                         Contador.PriorityOFF()
                         Lights.Turn_OFF_Red()
 

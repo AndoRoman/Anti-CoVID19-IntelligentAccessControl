@@ -1,7 +1,6 @@
-#import Voice
+# import Voice
 import linecache
 import datetime
-
 
 # CLIENT SOAP
 from zeep import *
@@ -28,23 +27,22 @@ def InitializationSystem():
 
     with open("Syslog.txt", "a") as file:
         file.writelines("\n[Initialization : " + str(datetime.datetime.now()) +
-                        "]\n{MaxCapacidad de la Sucursal = " + str(3) + "\n}END\n")
+                        "]\n{MaxCapacidad de la Sucursal = " + str(response) + "\n}END\n")
         file.close()
 
     with open("SucursalInfo.txt", "w+") as data:
-        data.writelines("MaxCapacidad=4" + "\nContador=0")
+        data.writelines("MaxCapacidad=" + str(response) + "\nContador=0")
         data.close()
 
 
 def NewTest(Temp, Mask, QR, Entry):
-
     if ModuloEstatus:
         Type = True
     else:
         Type = False
 
     test = factory.dtoTesting(mascarilla=Mask, temperatura=Temp, fechaResgistro=datetime.datetime.now(),
-                                idModulo=ModuloID, tipoModulo=Type, cedulaPersona=QR, estatus=Entry)
+                              idModulo=ModuloID, tipoModulo=Type, cedulaPersona=QR, estatus=Entry)
 
     return test
 
@@ -67,12 +65,14 @@ def UpdateStatus(Temp, Mask, QR, Entry):
 def ExitPerson():
     return cliente.service.salidadDePersona(IDSucursal)
 
+
 # Authenticar QR
 def Authentication(QR):
     with open("Syslog.txt", "a") as file:
         file.writelines("\n[ Authenticate QR : " + str(datetime.datetime.now()) + "]\n{}END\n")
         file.close()
-    return cliente.service.consultarPrioridad(QR, "1")  # True or False
+    return cliente.service.consultarPrioridad(QR, IDSucursal)  # True or False
+
 
 def __main__():
     InitializationSystem()
