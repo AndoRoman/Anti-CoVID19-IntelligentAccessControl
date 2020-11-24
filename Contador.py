@@ -18,6 +18,7 @@ def PriorityON(qrImage):
     print("PRIORIDAD ACTIVADA, QR = " + QR)
 
 
+
 def PriorityOFF():
     global Priority, QR
     Priority = False

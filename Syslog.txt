@@ -296,17 +296,61 @@ TEST = 37.08, False, None
 Personas dentro del Local = -1
 }END
 
-[Initialization : 2020-11-24 15:22:58.835840]
-{MaxCapacidad de la Sucursal = -1
-}END
-
-[Initialization : 2020-11-24 15:49:13.166608]
+[Initialization : 2020-11-24 16:19:30.947551]
 {MaxCapacidad de la Sucursal = 100
 }END
 
-[Initialization : 2020-11-24 15:50:24.783589]
+[Initialization : 2020-11-24 16:23:04.664812]
 {MaxCapacidad de la Sucursal = 100
 }END
 
-[ Authenticate QR : 2020-11-24 15:50:24.865919]
+[Initialization : 2020-11-24 16:24:06.322860]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 16:28:04.396162]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-24 16:28:04.684962]
+{}END
+
+[Initialization : 2020-11-24 16:31:02.062556]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 16:32:44.596407]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 16:39:22.630943]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 16:46:50.857362]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-24 16:47:47.257858]
+{}END
+
+[Initialization : 2020-11-24 16:56:20.966831]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-24 16:56:21.139695]
+{}END
+
+[Initialization : 2020-11-24 16:58:55.485192]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-24 16:58:55.638182]
+{}END
+
+[Initialization : 2020-11-24 17:00:51.784433]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-24 17:00:51.833270]
 {}END
