@@ -1,5 +1,5 @@
 import linecache
-import SOAPClient
+#import SOAPClient
 
 # READ DATA
 MaxCapacidad = linecache.getline("SucursalInfo.txt", 1).strip().split("=")[1]
@@ -24,26 +24,26 @@ def PriorityOFF():
     QR = None
 
 
-def Person(Temp, Mask, Entry):
-    global Conteo, Priority
-    if Priority:
-        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=QR, Entry=Entry)[1]
-    else:
-        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=None, Entry=Entry)[1]
+#def Person(Temp, Mask, Entry):
+#    global Conteo, Priority
+#    if Priority:
+        #Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=QR, Entry=Entry)[1]
+#    else:
+        #Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=None, Entry=Entry)[1]
 
 
 def PersonalOFFLINE():
     global Conteo, Priority
     if Priority:
-        Conteo += 1
+       Conteo = int(Conteo) + 1
     else:
-        Conteo += 1
+       Conteo = int(Conteo) + 1
 
 
 def DeletePerson():
     global Conteo
     Conteo -= 1
-    SOAPClient.ExitPerson()
+   # SOAPClient.ExitPerson()
     print("ALGUIEN SALIÓ CONTEO = " + str(Conteo))
 
 

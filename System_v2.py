@@ -3,7 +3,7 @@ from Alertas import Voice  # MODULE OF VOICE
 import Dect_Image  # MODULE OF AI MASK
 import Motors  # MODULE OF MOTORS
 import TempC  # MODULE OF TEMPERATURE
-import SOAPClient # Cliente SOAP
+#import SOAPClient # Cliente SOAP
 import Contador
 import QRreader
 
@@ -56,9 +56,10 @@ class myThread(threading.Thread):
                     QR = None
 
                 if QR is not None:
-                    if SOAPClient.Autentication(QR):
+                    if QR == '40230640613':
                         Voice.speak1("CodigoQRAceptado.mp3")
-                        Contador.PriorityON()
+                        Contador.PriorityON(QR)
+                        time.sleep(3)
                     else:
                         Voice.speak1("CodigoQRdenegado.mp3")
 
