@@ -116,6 +116,7 @@ tempe = 0.0
 
 
 def __main__():
+    SOAPClient.InitializationSystem()
     print('[INFO] Sistema Activado...\n[INFO] Esperando Cliente...')
     Voice.speak1('bienvenido.mp3')
 

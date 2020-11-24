@@ -295,3 +295,18 @@ Personas dentro del Local = -1
 TEST = 37.08, False, None
 Personas dentro del Local = -1
 }END
+
+[Initialization : 2020-11-24 15:22:58.835840]
+{MaxCapacidad de la Sucursal = -1
+}END
+
+[Initialization : 2020-11-24 15:49:13.166608]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 15:50:24.783589]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-24 15:50:24.865919]
+{}END

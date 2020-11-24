@@ -17,13 +17,13 @@ ModuloID = linecache.getline("configuration.txt", 1).strip().split("=")[0]
 # ModuloEstatus indica si es normal (0) o Prioritario (1)
 ModuloEstatus = linecache.getline("configuration.txt", 2).strip().split("=")[0]
 IDSucursal = linecache.getline("configuration.txt", 3).strip().split("=")[0]
-print("[INFO] SOAPClient Inicializado...")
+
 
 
 # Initialization
 def InitializationSystem():
     # response = MaxCapacidad de la sucursal
-    response = cliente.service.capacidadSucursal(IDSucursal)
+    response = cliente.service.capacidadSucursal(str(1))
 
     with open("Syslog.txt", "a") as file:
         file.writelines("\n[Initialization : " + str(datetime.datetime.now()) +
@@ -33,7 +33,7 @@ def InitializationSystem():
     with open("SucursalInfo.txt", "w+") as data:
         data.writelines("MaxCapacidad=" + str(response) + "\nContador=0")
         data.close()
-
+    print("[INFO] SOAPClient Inicializado...")
 
 def NewTest(Temp, Mask, QR, Entry):
     if ModuloEstatus:
