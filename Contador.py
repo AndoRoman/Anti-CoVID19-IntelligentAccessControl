@@ -18,7 +18,6 @@ def PriorityON(qrImage):
     print("PRIORIDAD ACTIVADA, QR = " + QR)
 
 
-
 def PriorityOFF():
     global Priority, QR
     Priority = False
@@ -28,17 +27,17 @@ def PriorityOFF():
 def Person(Temp, Mask, Entry):
     global Conteo, Priority
     if Priority:
-        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=QR, Entry=Entry)[1]
+        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=QR, Entry=Entry)
     else:
-        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=None, Entry=Entry)[1]
+        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=None, Entry=Entry)
 
 
 def PersonalOFFLINE():
     global Conteo, Priority
     if Priority:
-       Conteo = int(Conteo) + 1
+        Conteo = int(Conteo) + 1
     else:
-       Conteo = int(Conteo) + 1
+        Conteo = int(Conteo) + 1
 
 
 def DeletePerson():

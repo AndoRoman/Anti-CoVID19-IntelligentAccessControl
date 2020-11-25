@@ -20,13 +20,12 @@ ModuloEstatus = linecache.getline("configuration.txt", 2).strip().split("=")[0]
 IDSucursal = linecache.getline("configuration.txt", 3).strip().split("=")[0]
 
 
-
 # Initialization
 def InitializationSystem():
     # response = MaxCapacidad de la sucursal
     response = cliente.service.capacidadSucursal(str(1))
 
-    if (int(response[0]) > 0):
+    if int(response[0]) > 0:
         with open("Syslog.txt", "a") as file:
             file.writelines("\n[Initialization : " + str(datetime.datetime.now()) +
                             "]\n{MaxCapacidad de la Sucursal = " + str(response[0]) + "\n}END\n")
@@ -35,7 +34,6 @@ def InitializationSystem():
         with open("SucursalInfo.txt", "w+") as data:
             data.writelines("MaxCapacidad=" + str(response[0]) + "\nContador=" + str(response[1]))
             data.close()
-
 
 
 def NewTest(typeID, Temp, Mask, QR, Entry):
