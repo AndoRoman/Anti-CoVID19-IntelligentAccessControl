@@ -2,8 +2,8 @@ import linecache
 import SOAPClient
 
 # READ DATA
-MaxCapacidad = linecache.getline("SucursalInfo.txt", 1).strip().split("=")[0]
-Conteo = linecache.getline("SucursalInfo.txt", 2).strip().split("=")[0]
+MaxCapacidad = linecache.getline("SucursalInfo.txt", 1).strip().split("=")[1]
+Conteo = linecache.getline("SucursalInfo.txt", 2).strip().split("=")[1]
 
 # PRIORITY
 Priority = False

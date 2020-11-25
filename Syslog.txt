@@ -354,3 +354,43 @@ Personas dentro del Local = -1
 
 [ Authenticate QR : 2020-11-24 17:00:51.833270]
 {}END
+
+[Initialization : 2020-11-24 17:24:43.453069]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 17:27:31.692786]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 17:31:25.403038]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 17:34:27.502557]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 17:39:47.398404]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 22:21:42.992390]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 22:48:00.943132]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 23:00:45.849276]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 23:03:52.609718]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-24 23:17:42.599319]
+{MaxCapacidad de la Sucursal = 100
+}END
