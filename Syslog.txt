@@ -402,3 +402,13 @@ Personas dentro del Local = -1
 [Initialization : 2020-11-25 20:28:46.845120]
 {MaxCapacidad de la Sucursal = 100
 }END
+
+[Initialization : 2020-11-26 13:38:22.934518]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-26 14:05:02.318463]
+{}END
+
+[ Authenticate QR : 2020-11-26 14:05:11.847721]
+{}END
