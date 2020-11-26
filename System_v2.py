@@ -139,7 +139,7 @@ def __main__():
                     Voice.speak1("ErrorTemperatura.mp3")
                 else:
 
-                    if tempe < 39.0:
+                    if tempe < 38.0:
                         TempSafe = True
                     else:
                         TempSafe = False

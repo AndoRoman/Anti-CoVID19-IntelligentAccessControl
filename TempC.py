@@ -6,3 +6,8 @@ def ReadSensorTemp():
     return float(temp.read())
 
 
+def __main__():
+    while(True):
+        print("TEMPERATURA: " + str(ReadSensorTemp()))
+        time.sleep(2)
+        

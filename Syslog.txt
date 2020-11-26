@@ -394,3 +394,11 @@ Personas dentro del Local = -1
 [Initialization : 2020-11-24 23:17:42.599319]
 {MaxCapacidad de la Sucursal = 100
 }END
+
+[Initialization : 2020-11-25 20:08:48.008862]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-25 20:28:46.845120]
+{MaxCapacidad de la Sucursal = 100
+}END
