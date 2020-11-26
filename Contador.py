@@ -27,9 +27,9 @@ def PriorityOFF():
 def Person(Temp, Mask, Entry):
     global Conteo, Priority
     if Priority:
-        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=QR, Entry=Entry)
+        Conteo = SOAPClient.UpdateStatus(Type=True, Temp=Temp, Mask=Mask, QR=QR, Entry=Entry)
     else:
-        Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=None, Entry=Entry)
+        Conteo = SOAPClient.UpdateStatus(Type=False, Temp=Temp, Mask=Mask, QR=None, Entry=Entry)
 
 
 def DeletePerson():

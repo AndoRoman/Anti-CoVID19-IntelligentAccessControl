@@ -6,8 +6,8 @@ import datetime
 from zeep import *
 
 settings = Settings(strict=False, xml_huge_tree=True)
-wsdl = 'https://aciacs.azrael.studio/ws?wsdl'
-# wsdl = 'http://localhost:7000/ws?wsdl'
+#wsdl = 'https://aciacs.azrael.studio/ws?wsdl'
+wsdl = 'http://localhost:7000/ws?wsdl'
 
 cliente = Client(wsdl)
 # Factory more information on Doc : https://docs.python-zeep.org/en/master/datastructures.html
@@ -37,7 +37,8 @@ def InitializationSystem():
 
 
 def NewTest(typeID, Temp, Mask, QR, Entry):
-    if type == 2:
+    if typeID == 2:
+        #PRIORITY
         test = factory.dtoTesting(mascarilla=Mask, temperatura=Temp, fechaResgistro=datetime.datetime.now(),
                                   idModulo=typeID, tipoModulo=False, cedulaPersona=QR, estatus=Entry)
     else:
@@ -48,8 +49,8 @@ def NewTest(typeID, Temp, Mask, QR, Entry):
 
 
 # Enviar Nuevo Test
-def UpdateStatus(Temp, Mask, QR, Entry):
-    if QR is not None:
+def UpdateStatus(Type, Temp, Mask, QR, Entry):
+    if Type:
         # Priority
         count = cliente.service.agregarTest(NewTest(2, Temp=Temp, Mask=Mask, QR=QR, Entry=Entry))
     else:
@@ -64,7 +65,7 @@ def UpdateStatus(Temp, Mask, QR, Entry):
     #                     + "\nPersonas dentro del Local = " + str(count[1])
     #                     + "\n}END\n")
     #     file.close()
-    return count[1]
+    return count
 
 
 def ExitPerson():
@@ -82,9 +83,8 @@ def Authentication(QR):
 def __main__():
     InitializationSystem()
     print("Conectado")
-    print('Agregando persona: ' + str(UpdateStatus(37.5, True, None, True)))
-    print('autenticar: ' + str(Authentication("1323143243")))
-    print('Salida: ' + str(ExitPerson()))
+    print('autenticar: ' + str(Authentication("402-1409395-3")))
+    print('Agregando persona: ' + str(UpdateStatus(True, 37.5, True, '402-1409395-3', True)))
 
 
 if __name__ == '__main__':
