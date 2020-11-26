@@ -413,93 +413,25 @@ Personas dentro del Local = -1
 [ Authenticate QR : 2020-11-26 14:05:11.847721]
 {}END
 
-[Initialization : 2020-11-26 15:24:35.578604]
+[Initialization : 2020-11-26 14:47:08.928331]
 {MaxCapacidad de la Sucursal = 100
 }END
 
-[ Authenticate QR : 2020-11-26 15:24:35.594277]
+[ Authenticate QR : 2020-11-26 14:48:02.237245]
 {}END
 
-[Initialization : 2020-11-26 15:29:13.805485]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:29:13.874589]
+[ Authenticate QR : 2020-11-26 14:48:03.625072]
 {}END
 
-[Initialization : 2020-11-26 15:29:37.268922]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:29:37.268922]
+[ Authenticate QR : 2020-11-26 14:48:18.303586]
 {}END
 
-[Initialization : 2020-11-26 15:30:29.596041]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:30:29.611581]
+[ Authenticate QR : 2020-11-26 14:48:33.662690]
 {}END
 
-[Initialization : 2020-11-26 15:32:59.331576]
+[Initialization : 2020-11-26 15:04:25.097498]
 {MaxCapacidad de la Sucursal = 100
 }END
 
-[ Authenticate QR : 2020-11-26 15:32:59.347235]
-{}END
-
-[Initialization : 2020-11-26 15:33:52.746814]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:33:52.746814]
-{}END
-
-[Initialization : 2020-11-26 15:35:15.406837]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:35:15.406837]
-{}END
-
-[Initialization : 2020-11-26 15:39:48.521105]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:39:48.521105]
-{}END
-
-[Initialization : 2020-11-26 15:43:46.981786]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:43:46.981786]
-{}END
-
-[Initialization : 2020-11-26 15:44:11.450628]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:44:11.460723]
-{}END
-
-[Initialization : 2020-11-26 15:44:57.795900]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:44:57.795900]
-{}END
-
-[Initialization : 2020-11-26 15:46:31.204573]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:46:31.204573]
-{}END
-
-[Initialization : 2020-11-26 15:48:35.568846]
-{MaxCapacidad de la Sucursal = 100
-}END
-
-[ Authenticate QR : 2020-11-26 15:48:35.568846]
+[ Authenticate QR : 2020-11-26 15:04:41.945893]
 {}END
