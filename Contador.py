@@ -32,14 +32,6 @@ def Person(Temp, Mask, Entry):
         Conteo = SOAPClient.UpdateStatus(Temp=Temp, Mask=Mask, QR=None, Entry=Entry)
 
 
-def PersonalOFFLINE():
-    global Conteo, Priority
-    if Priority:
-        Conteo = int(Conteo) + 1
-    else:
-        Conteo = int(Conteo) + 1
-
-
 def DeletePerson():
     global Conteo
     Conteo -= 1

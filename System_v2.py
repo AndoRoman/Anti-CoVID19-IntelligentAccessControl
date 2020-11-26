@@ -5,7 +5,6 @@ import Motors  # MODULE OF MOTORS
 import TempC  # MODULE OF TEMPERATURE
 import SOAPClient # Cliente SOAP
 import Contador
-import QRreader
 
 import RPi.GPIO as GPIO
 #############
@@ -48,21 +47,6 @@ class myThread(threading.Thread):
         while True:
             i = 0
 
-            # QR
-            if self.name == 'QR':
-                try:
-                    QR = QRreader.ReadQR()
-                except Exception:
-                    QR = None
-
-                if QR is not None:
-                    if SOAPClient.Authentication(QR):
-                        Voice.speak1("CodigoQRAceptado.mp3")
-                        Contador.PriorityON(QR)
-                        time.sleep(3)
-                    else:
-                        Voice.speak1("CodigoQRdenegado.mp3")
-
             # SENSORES IR SALIDA
             if self.name == 'Salida':
                 if GPIO.input(SensorSalida1) and i == 0 and Contador.CanExitPerson():
@@ -104,11 +88,9 @@ def BotonPanico():
 
 
 # Create Thread's
-threadQR = myThread(1, "QR")
 threadExit = myThread(2, "Salida")
 
 threadExit.start()
-threadQR.start()
 
 # Variable
 acces = False
@@ -177,8 +159,6 @@ def __main__():
                             if (t2 - t1) > 5:
                                 T = False
                                 print("[INFO] Tiempo Agotado...Cerrando Entrada")
-
-                        Contador.PriorityOFF()
                         Lights.Turn_OFF_Green()
                         Motors.Close_Barrier_IN()
                         print('[INFO] Acceso Permitido...\n[INFO] Esperando Nuevo Cliente...')
@@ -189,7 +169,6 @@ def __main__():
                         Voice.speak1('denegado.mp3')
                         print('[INFO] Acceso Denegado...\n[INFO] Esperando Nuevo Cliente...')
                         Contador.Person(Temp=tempe, Mask=False, Entry=False)
-                        Contador.PriorityOFF()
                         Lights.Turn_OFF_Red()
 
                     if not token:
@@ -210,4 +189,3 @@ def __main__():
 if __name__ == '__main__':
     __main__()
     threadExit.join()
-    threadQR.join()
