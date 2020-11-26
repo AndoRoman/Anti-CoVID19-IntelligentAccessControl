@@ -46,7 +46,6 @@ class myThread(threading.Thread):
 
         while True:
             i = 0
-
             # SENSORES IR SALIDA
             if self.name == 'Salida':
                 if GPIO.input(SensorSalida1) and i == 0 and Contador.CanExitPerson():
@@ -89,7 +88,6 @@ def BotonPanico():
 
 # Create Thread's
 threadExit = myThread(2, "Salida")
-
 threadExit.start()
 
 # Variable

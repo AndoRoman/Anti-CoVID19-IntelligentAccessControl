@@ -195,6 +195,7 @@ threadQR.start()
 # Variable
 acces = False
 tempe = 0.0
+QR = None
 
 
 def __main__():
@@ -202,7 +203,7 @@ def __main__():
     print('[INFO] Sistema De Prioridad Activado...\n[INFO] Esperando Cliente...')
     Voice.speak1('bienvenido.mp3')
 
-    global acces, tempe
+    global acces, tempe, QR
     while True:
 
         BotonPanico()
@@ -220,6 +221,7 @@ def __main__():
 
                     if (t2 - t1) > 10:
                         status = False
+                        QR = None
                         print("[INFO] Tiempo De Espera Agotado")
             else:
                 Voice.speak1("CodigoQRdenegado.mp3")
