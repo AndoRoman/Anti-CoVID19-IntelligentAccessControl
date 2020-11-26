@@ -48,21 +48,6 @@ class myThread(threading.Thread):
         while True:
             i = 0
 
-            # QR
-            if self.name == 'QR':
-                try:
-                    QR = QRreader.ReadQR()
-                except Exception:
-                    QR = None
-
-                if QR is not None:
-                    if SOAPClient.Authentication(QR):
-                        Voice.speak1("CodigoQRAceptado.mp3")
-                        Contador.PriorityON(QR)
-                        time.sleep(3)
-                    else:
-                        Voice.speak1("CodigoQRdenegado.mp3")
-
             # SENSORES IR SALIDA
             if self.name == 'Salida':
                 if GPIO.input(SensorSalida1) and i == 0 and Contador.CanExitPerson():
@@ -186,11 +171,9 @@ def EVALUACION():
 
 
 # Create Thread's
-threadQR = myThread(1, "QR")
 threadExit = myThread(2, "Salida")
 
 threadExit.start()
-threadQR.start()
 
 # Variable
 acces = False
@@ -225,9 +208,13 @@ def __main__():
                         print("[INFO] Tiempo De Espera Agotado")
             else:
                 Voice.speak1("CodigoQRdenegado.mp3")
-
+                
+            if cv2.waitKey(1) == ord("q"):
+                break
+            
+    cap.release()
 
 if __name__ == '__main__':
     __main__()
     threadExit.join()
-    threadQR.join()
+
