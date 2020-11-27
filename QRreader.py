@@ -1,13 +1,15 @@
 import cv2
 import time
 
-# initalize the cam
-cap = cv2.VideoCapture(0)
-# initialize the cv2 QRCode detector
-detector = cv2.QRCodeDetector()
+
 
 
 def ReadQR():
+    # initalize the cam
+    cap = cv2.VideoCapture(0)
+    # initialize the cv2 QRCode detector
+    detector = cv2.QRCodeDetector()
+    
     _, img = cap.read()
     # detect and decode
     data, bbox, _ = detector.detectAndDecode(img)
@@ -19,14 +21,16 @@ def ReadQR():
             cv2.line(img, tuple(bbox[i][0]), tuple(bbox[(i + 1) % len(bbox)][0]), color=(255, 0, 0), thickness=2)
         if data:
             return data
-        
+def camara():
+    cv2.VideoCapture(0).release()
 
 def __main__():
     print("System ON")
     while(True):
         print("[INFO] QR Code Información:", ReadQR())
         time.sleep(2)
-        
+        camara()
+        print("[INFO] close")
     print("System Completed!!")
 
 

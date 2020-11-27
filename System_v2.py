@@ -16,7 +16,7 @@ SensorIR = 4
 SensorSalida2 = 9
 SensorSalida1 = 11
 SensorEntrada = 10
-BotonPanico = 12
+BtnPanico = 12
 # SensorTemperatura = 2 y 3
 # MotorEntrada = 21(DIR), 20(STEP)
 # MotorSalida = 13(DIR), 19(STEP)
@@ -30,7 +30,7 @@ GPIO.setup(SensorIR, GPIO.IN)  # sensor IR
 GPIO.setup(SensorSalida1, GPIO.IN)
 GPIO.setup(SensorSalida2, GPIO.IN)
 GPIO.setup(SensorEntrada, GPIO.IN)
-GPIO.setup(BotonPanico, GPIO.IN)
+GPIO.setup(BtnPanico, GPIO.IN)
 
 
 ####CLASS TO THREAD###
@@ -69,12 +69,12 @@ class myThread(threading.Thread):
 
 
 def BotonPanico():
-    if not GPIO.input(BotonPanico):
+    if not GPIO.input(BtnPanico):
         Motors.Open_Barrier_OUT()
         Motors.Open_Barrier_IN()
         Voice.speak1("BotonPanico.mp3")
 
-        while not GPIO.input(BotonPanico):
+        while not GPIO.input(BtnPanico):
             Lights.Turn_ON_Full()
             time.sleep(2)
             Lights.Turn_OFF_Full()
@@ -116,7 +116,7 @@ def __main__():
                     Voice.speak1("ErrorTemperatura.mp3")
                 else:
 
-                    if tempe < 38.0:
+                    if tempe < 39.0:
                         TempSafe = True
                     else:
                         TempSafe = False

@@ -72,7 +72,7 @@ def ExitPerson():
 # Authenticar QR
 def Authentication(QR):
     with open("Syslog.txt", "a") as file:
-        file.writelines("\n[ Authenticate QR : " + str(datetime.datetime.now()) + "]\n{}END\n")
+        file.writelines("\n[ Authenticate QR : " + str(datetime.datetime.now()) + " QR: " + str(QR) + "]\n{}END\n")
         file.close()
     return cliente.service.consultarPrioridad(QR, IDSucursal)
 

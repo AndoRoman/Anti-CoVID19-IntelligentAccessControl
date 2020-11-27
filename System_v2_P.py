@@ -60,17 +60,19 @@ class myThread(threading.Thread):
                 except Exception:
                     with open("Syslog.txt", "a") as file:
                         file.writelines("\n[ERROR QR-read] : " + str(datetime.datetime.now()) + "]\n{"
-                                        + " " + str(Exception) + " " + "[QR:VALUE] = " + str(QR)
+                                        + " " + str(Exception) + " " + "[QR:VALUE] = " + str(QRTest)
                                         + "\n}END\n")
                         file.close()
 
                 if QRTest is not None:
-                    if SOAPClient.Authentication(QR):
+                    QRreader.camara()
+                    if SOAPClient.Authentication(QRTest):
                         Voice.speak1("CodigoQRAceptado.mp3")
                         QR = QRTest
                         QRTest = None
 
                     else:
+                        QRTest = None
                         Voice.speak1("CodigoQRdenegado.mp3")
 
             if self.name is 'Salida':
