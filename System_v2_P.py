@@ -190,6 +190,7 @@ def __main__():
     while True:
 
         BotonPanico()
+        QR = None
         QR = QRreader.ReadQR()
 
         if QR is not None:
@@ -201,17 +202,14 @@ def __main__():
                 while status:
                     t2 = time.time()
                     EVALUACION()
+                    status = False
 
                     if (t2 - t1) > 10:
                         status = False
-                        QR = None
                         print("[INFO] Tiempo De Espera Agotado")
             else:
                 Voice.speak1("CodigoQRdenegado.mp3")
-                
-            if cv2.waitKey(1) == ord("q"):
-                break
-            
+                          
     cap.release()
 
 if __name__ == '__main__':

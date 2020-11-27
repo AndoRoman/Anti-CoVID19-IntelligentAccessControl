@@ -19,7 +19,7 @@ def ReadQR():
             cv2.line(img, tuple(bbox[i][0]), tuple(bbox[(i + 1) % len(bbox)][0]), color=(255, 0, 0), thickness=2)
         if data:
             return data
-
+        
 
 def __main__():
     print("System ON")

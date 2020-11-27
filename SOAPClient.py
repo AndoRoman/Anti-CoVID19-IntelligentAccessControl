@@ -6,8 +6,8 @@ import datetime
 from zeep import *
 
 settings = Settings(strict=False, xml_huge_tree=True)
-#wsdl = 'https://aciacs.azrael.studio/ws?wsdl'
-wsdl = 'http://localhost:7000/ws?wsdl'
+wsdl = 'https://aciacs.azrael.studio/ws?wsdl'
+#wsdl = 'http://localhost:7000/ws?wsdl'
 
 cliente = Client(wsdl)
 # Factory more information on Doc : https://docs.python-zeep.org/en/master/datastructures.html
@@ -65,7 +65,7 @@ def UpdateStatus(Type, Temp, Mask, QR, Entry):
     #                     + "\nPersonas dentro del Local = " + str(count[1])
     #                     + "\n}END\n")
     #     file.close()
-    return count
+    return count[1]
 
 
 def ExitPerson():
@@ -77,7 +77,8 @@ def Authentication(QR):
     with open("Syslog.txt", "a") as file:
         file.writelines("\n[ Authenticate QR : " + str(datetime.datetime.now()) + "]\n{}END\n")
         file.close()
-    return cliente.service.consultarPrioridad(QR, str(1))  # True or False
+    #return cliente.service.consultarPrioridad(QR, str(1))
+    return True# True or False
 
 
 def __main__():

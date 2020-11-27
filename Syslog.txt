@@ -435,3 +435,111 @@ Personas dentro del Local = -1
 
 [ Authenticate QR : 2020-11-26 15:04:41.945893]
 {}END
+
+[Initialization : 2020-11-26 15:58:59.071588]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-26 16:02:13.586758]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-26 16:06:11.427231]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-26 16:10:49.745604]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-26 16:11:36.889748]
+{}END
+
+[Initialization : 2020-11-26 16:15:15.445030]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-26 16:17:06.392424]
+{}END
+
+[ Authenticate QR : 2020-11-26 16:17:26.116013]
+{}END
+
+[Initialization : 2020-11-26 16:23:07.583270]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-26 16:23:27.748413]
+{}END
+
+[ Authenticate QR : 2020-11-26 16:23:50.031389]
+{}END
+
+[ Authenticate QR : 2020-11-26 16:24:05.077047]
+{}END
+
+[ Authenticate QR : 2020-11-26 16:24:20.564530]
+{}END
+
+[ Authenticate QR : 2020-11-26 16:24:36.212592]
+{}END
+
+[Initialization : 2020-11-26 16:29:18.170617]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-26 16:29:49.164744]
+{}END
+
+[ Authenticate QR : 2020-11-26 16:30:19.173078]
+{}END
+
+[Initialization : 2020-11-26 16:34:22.035462]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-26 16:35:42.678366]
+{}END
+
+[ Authenticate QR : 2020-11-26 16:35:48.383958]
+{}END
+
+[Initialization : 2020-11-26 16:39:39.100367]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-26 16:45:28.554260]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[Initialization : 2020-11-26 17:00:38.098851]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-26 17:01:08.625533]
+{}END
+
+[ Authenticate QR : 2020-11-26 17:01:14.278626]
+{}END
+
+[Initialization : 2020-11-26 17:21:41.583498]
+{MaxCapacidad de la Sucursal = 100
+}END
+
+[ Authenticate QR : 2020-11-26 17:28:50.000281]
+{}END
+
+[ Authenticate QR : 2020-11-26 17:29:36.694366]
+{}END
+
+[ Authenticate QR : 2020-11-26 17:29:41.790601]
+{}END
+
+[ Authenticate QR : 2020-11-26 17:30:42.386833]
+{}END
+
+[ Authenticate QR : 2020-11-26 17:30:49.860066]
+{}END
+
+[ Authenticate QR : 2020-11-26 17:31:01.964933]
+{}END
