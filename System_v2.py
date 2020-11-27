@@ -3,7 +3,7 @@ from Alertas import Voice  # MODULE OF VOICE
 import Dect_Image  # MODULE OF AI MASK
 import Motors  # MODULE OF MOTORS
 import TempC  # MODULE OF TEMPERATURE
-import SOAPClient # Cliente SOAP
+import SOAPClient  # Cliente SOAP
 import Contador
 
 import RPi.GPIO as GPIO
@@ -23,7 +23,6 @@ BotonPanico = 12
 # LuzVerde = 27
 # LuzRoja = 17
 # luzAmarilla = 22
-# BOTON PANICO = 12
 
 GPIO.setwarnings(False)  # Ignore warning for now
 GPIO.setmode(GPIO.BCM)  # Use physical pin numbering
@@ -47,37 +46,35 @@ class myThread(threading.Thread):
         while True:
             i = 0
             # SENSORES IR SALIDA
-            if self.name == 'Salida':
-                if GPIO.input(SensorSalida1) and i == 0 and Contador.CanExitPerson():
-                    Motors.Open_Barrier_OUT()
-                    t1 = time.time()
-                    a = 1
-                    i += 1
-                    print("SALIDA #0 ACTIVADA\n")
-                    time.sleep(3)
-                    while a != 0:
-                        t2 = time.time()
-                        if GPIO.input(SensorSalida2):
-                            print("SALIDA #1 ACTIVADA\n")
-                            Contador.DeletePerson()
-                            time.sleep(3)
-                            a = 0
-                            Motors.Close_Barrier_OUT()
+            if GPIO.input(SensorSalida1) and i == 0 and Contador.CanExitPerson():
+                Motors.Open_Barrier_OUT()
+                t1 = time.time()
+                a = 1
+                i += 1
+                print("SALIDA #0 ACTIVADA\n")
+                time.sleep(3)
+                while a != 0:
+                    t2 = time.time()
+                    if GPIO.input(SensorSalida2):
+                        print("SALIDA #1 ACTIVADA\n")
+                        Contador.DeletePerson()
+                        time.sleep(3)
+                        a = 0
+                        Motors.Close_Barrier_OUT()
 
-                        if t2 - t1 > 5:
-                            print("CERRANDO..., time agotado\n")
-                            a = 0
-                            Motors.Close_Barrier_OUT()
+                    if t2 - t1 > 5:
+                        print("CERRANDO..., time agotado\n")
+                        a = 0
+                        Motors.Close_Barrier_OUT()
 
 
 def BotonPanico():
-    if not GPIO.input(12):
+    if not GPIO.input(BotonPanico):
         Motors.Open_Barrier_OUT()
         Motors.Open_Barrier_IN()
         Voice.speak1("BotonPanico.mp3")
 
-
-        while not GPIO.input(12):
+        while not GPIO.input(BotonPanico):
             Lights.Turn_ON_Full()
             time.sleep(2)
             Lights.Turn_OFF_Full()
@@ -87,7 +84,7 @@ def BotonPanico():
 
 
 # Create Thread's
-threadExit = myThread(2, "Salida")
+threadExit = myThread(1, "Salida")
 threadExit.start()
 
 # Variable
@@ -147,7 +144,7 @@ def __main__():
                             t2 = time.time()
                             if GPIO.input(SensorEntrada):
                                 Contador.Person(Temp=tempe, Mask=True, Entry=True)
-                                print("ENTRADA...Cantidad de personas: " + str(Contador))
+                                print("ENTRADA...Cantidad de personas: " + str(Contador.Conteo))
                                 time.sleep(3)
                                 T = False
                                 if not Contador.StatusLocalCapacity():

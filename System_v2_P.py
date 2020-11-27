@@ -1,3 +1,5 @@
+import datetime
+
 import Lights  # MODULE OF LIGHTS
 from Alertas import Voice  # MODULE OF VOICE
 import Dect_Image  # MODULE OF AI MASK
@@ -6,7 +8,6 @@ import TempC  # MODULE OF TEMPERATURE
 import SOAPClient  # Cliente SOAP
 import Contador
 import QRreader
-
 import RPi.GPIO as GPIO
 #############
 import threading
@@ -26,6 +27,11 @@ BotonPanico = 12
 # luzAmarilla = 22
 # BOTON PANICO = 12
 
+# Variable
+acces = False
+tempe = 0.0
+QR = None
+
 GPIO.setwarnings(False)  # Ignore warning for now
 GPIO.setmode(GPIO.BCM)  # Use physical pin numbering
 GPIO.setup(SensorIR, GPIO.IN)  # sensor IR
@@ -44,12 +50,31 @@ class myThread(threading.Thread):
 
     def run(self):
         # Function that THREAD will do
-
+        global QR
         while True:
             i = 0
 
-            # SENSORES IR SALIDA
-            if self.name == 'Salida':
+            if self.name is 'QR':
+                try:
+                    QRTest = QRreader.ReadQR()
+                except Exception:
+                    with open("Syslog.txt", "a") as file:
+                        file.writelines("\n[ERROR QR-read] : " + str(datetime.datetime.now()) + "]\n{"
+                                        + " " + str(Exception) + " " + "[QR:VALUE] = " + str(QR)
+                                        + "\n}END\n")
+                        file.close()
+
+                if QRTest is not None:
+                    if SOAPClient.Authentication(QR):
+                        Voice.speak1("CodigoQRAceptado.mp3")
+                        QR = QRTest
+                        QRTest = None
+
+                    else:
+                        Voice.speak1("CodigoQRdenegado.mp3")
+
+            if self.name is 'Salida':
+                # SENSORES IR SALIDA
                 if GPIO.input(SensorSalida1) and i == 0 and Contador.CanExitPerson():
                     Motors.Open_Barrier_OUT()
                     t1 = time.time()
@@ -130,7 +155,7 @@ def EVALUACION():
                         t2 = time.time()
                         if GPIO.input(SensorEntrada):
                             Contador.Person(Temp=tempe, Mask=True, Entry=True)
-                            print("ENTRADA...Cantidad de personas: " + str(Contador))
+                            print("ENTRADA...Cantidad de personas: " + str(Contador.Conteo))
                             time.sleep(3)
                             T = False
                             if not Contador.StatusLocalCapacity():
@@ -145,6 +170,7 @@ def EVALUACION():
                     Lights.Turn_OFF_Green()
                     Motors.Close_Barrier_IN()
                     print('[INFO] Acceso Prioritario Permitido...\n[INFO] Esperando Nuevo Cliente...')
+                    return True
 
                 elif (result == 'No Mask' or not TempSafe) and token:
 
@@ -154,6 +180,7 @@ def EVALUACION():
                     Contador.Person(Temp=tempe, Mask=False, Entry=False)
                     Contador.PriorityOFF()
                     Lights.Turn_OFF_Red()
+                    return True
 
                 if not token:
                     print('[INFO] Intentelo de Nuevo...')
@@ -168,17 +195,15 @@ def EVALUACION():
             Lights.Turn_ON_Full()
             Voice.speak1('localFull.mp3')
             print('[INFO] Local Lleno...\n[INFO] No se permiten Nuevos Clientes...')
-
+            return True
+    elif GPIO.input(SensorIR):
+        return False
 
 # Create Thread's
-threadExit = myThread(2, "Salida")
-
+threadExit = myThread(1, "Salida")
+threadQR = myThread(2, "QR")
 threadExit.start()
-
-# Variable
-acces = False
-tempe = 0.0
-QR = None
+threadQR.start()
 
 
 def __main__():
@@ -188,31 +213,23 @@ def __main__():
 
     global acces, tempe, QR
     while True:
-
         BotonPanico()
-        QR = None
-        QR = QRreader.ReadQR()
-
         if QR is not None:
-            if SOAPClient.Authentication(QR):
-                Voice.speak1("CodigoQRAceptado.mp3")
-                Contador.PriorityON(QR)
-                status = True
-                t1 = time.time()
-                while status:
-                    t2 = time.time()
-                    EVALUACION()
+            Contador.PriorityON(QR)
+            status = True
+            t1 = time.time()
+            while status:
+                t2 = time.time()
+                if EVALUACION():
                     status = False
+                    QR = None
+                if (t2 - t1) > 10:
+                    status = False
+                    QR = None
+                    print("[INFO] Tiempo De Espera Agotado")
 
-                    if (t2 - t1) > 10:
-                        status = False
-                        print("[INFO] Tiempo De Espera Agotado")
-            else:
-                Voice.speak1("CodigoQRdenegado.mp3")
-                          
-    cap.release()
 
 if __name__ == '__main__':
     __main__()
     threadExit.join()
-
+    threadQR.join()

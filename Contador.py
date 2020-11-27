@@ -1,14 +1,18 @@
-import linecache
 import SOAPClient
 
 # READ DATA
-MaxCapacidad = linecache.getline("SucursalInfo.txt", 1).strip().split("=")[1]
-Conteo = linecache.getline("SucursalInfo.txt", 2).strip().split("=")[1]
-
+MaxCapacidad = 0
+Conteo = 0
 # PRIORITY
 Priority = False
 QR = None
-print("[INFO] Contador Inicializado...")
+
+
+def InitCount(Max, Count):
+    global MaxCapacidad, Conteo
+    MaxCapacidad = Max
+    Conteo = Count
+    print("[INFO] Contador Inicializado...")
 
 
 def PriorityON(qrImage):
